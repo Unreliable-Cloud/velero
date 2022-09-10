@@ -36,7 +36,7 @@ velero:
   credentials:
     existingSecret: velero-hetzner-aws-s3
 
-  deployRestic: true
+  deployRestic: false
 
   restic:
     tolerations:
@@ -67,7 +67,7 @@ velero:
           matchLabels:
             component: etcd
             tier: control-plane
-        snapshotVolumes: true
+        snapshotVolumes: false
         storageLocation: velero-hetzner-aws
         volumeSnapshotLocations:
         - velero-hetzner-aws
