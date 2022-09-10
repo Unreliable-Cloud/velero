@@ -3,7 +3,7 @@ defaultNamespace: velero
 helm:
   releaseName: velero
   valuesFiles:
-  - velero-values.yaml
+  - values/velero-values.yaml
 
 targetCustomizations:
 - name: k8s-us-east
