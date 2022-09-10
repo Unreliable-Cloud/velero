@@ -39,6 +39,7 @@ velero:
   deployRestic: true
 
   restic:
+    privileged: true
     tolerations:
     - key: node-role.kubernetes.io/control-plane
       effect: NoSchedule
