@@ -33,3 +33,23 @@ velero:
   
   credentials:
     existingSecret: velero-hetzner-aws-s3
+
+  schedules:
+    etcd:
+      enabled: true
+      labels:
+        component: etcd
+        tier: control-plane
+      schedule: "@every 24h"
+      template:
+        ttl: "360h0m0s"
+        includedNamespaces:
+        - kube-system
+        includedResources:
+        - "*"
+        labelSelector:
+          matchLabels:
+            component: etcd
+            tier: control-plane
+        snapshotVolumes: false
+        storageLocation: velero-hetzner-aws
