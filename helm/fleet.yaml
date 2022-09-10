@@ -12,4 +12,4 @@ targetCustomizations:
     - values/k8s-us-east-values.yaml
   clusterSelector:
     matchLabels:
-      name: k8s-us-east
+      clusterName: k8s-us-east
