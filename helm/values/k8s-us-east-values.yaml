@@ -36,7 +36,7 @@ velero:
   credentials:
     existingSecret: velero-hetzner-aws-s3
 
-  deployRestic: false
+  deployRestic: true
 
   restic:
     tolerations:
