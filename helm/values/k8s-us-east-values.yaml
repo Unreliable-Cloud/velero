@@ -60,5 +60,5 @@ velero:
           matchLabels:
             component: etcd
             tier: control-plane
-        snapshotVolumes: false
+        snapshotVolumes: true
         storageLocation: velero-hetzner-aws
