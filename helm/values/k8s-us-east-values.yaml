@@ -37,6 +37,11 @@ velero:
   deployRestic: true
 
   restic:
+    tolerations:
+    - key: node-role.kubernetes.io/control-plane
+      effect: NoSchedule
+    - key: node-role.kubernetes.io/master
+      effect: NoSchedule
     resources:
       requests:
         cpu: 200m
