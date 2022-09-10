@@ -69,3 +69,5 @@ velero:
             tier: control-plane
         snapshotVolumes: true
         storageLocation: velero-hetzner-aws
+        volumeSnapshotLocations:
+        - velero-hetzner-aws
