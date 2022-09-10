@@ -38,6 +38,8 @@ velero:
   deployRestic: true
 
   restic:
+    podAnnotations:
+      ad.datadoghq.com/velero.logs: '[{"service": "restic", "source": "go", "sourcecategory": "kubernetes"}]'
     tolerations:
     - key: node-role.kubernetes.io/control-plane
       effect: NoSchedule
