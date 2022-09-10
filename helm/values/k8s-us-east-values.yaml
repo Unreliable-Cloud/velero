@@ -5,6 +5,8 @@ velero:
     app: velero
   podLabels:
     app: velero
+  podAnnotations:
+    ad.datadoghq.com/velero.logs: '[{"service": "velero", "source": "kubernetes"}]'
   resouces:
     requests:
       cpu: 200m
