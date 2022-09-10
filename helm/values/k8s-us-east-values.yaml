@@ -47,6 +47,7 @@ velero:
         - kube-system
         includedResources:
         - "*"
+        includeClusterResources: true
         labelSelector:
           matchLabels:
             component: etcd
