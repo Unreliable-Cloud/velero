@@ -27,6 +27,7 @@ velero:
       default: true
     volumeSnapshotLocation:
       name: velero-hetzner-aws
+      defaultVolumesToRestic: true
       config:
         region: us-east-1
     logFormat: json
