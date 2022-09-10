@@ -1,0 +1,15 @@
+defaultNamespace: velero
+
+helm:
+  releaseName: velero
+  valuesFiles:
+  - velero-values.yaml
+
+targetCustomizations:
+- name: k8s-us-east
+  helm:
+    valuesFiles:
+    - values/k8s-us-east-values.yaml
+  clusterSelector:
+    matchLabels:
+      name: k8s-us-east

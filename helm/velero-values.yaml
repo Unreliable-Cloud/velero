@@ -1,0 +1,10 @@
+velero:
+  image:
+    repository: docker.io/velero/velero
+  labels:
+    app: velero
+  podLabels:
+    app: velero
+  resouces:
+    requests:
+      cpu: 200m
