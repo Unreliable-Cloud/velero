@@ -1,7 +1,19 @@
 defaultNamespace: velero
 
+dependsOn:
+- name: vault-secrets-webhook-helm
+
 helm:
   releaseName: velero
+
+diff:
+  comparePatches:
+  - apiVersion: v1
+    kind: Secret
+    name: velero-hetzner-aws-s3
+    namespace: velero
+    jsonPointers:
+    - "/data/cloud"
 
 targetCustomizations:
 - name: k8s-us-east
