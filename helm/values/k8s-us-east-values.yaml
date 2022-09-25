@@ -84,7 +84,7 @@ velero:
         includedResources:
         - "*"
         includeClusterResources: true
-        snapshotVolumes: false
+        snapshotVolumes: true
         storageLocation: velero-hetzner-aws
         volumeSnapshotLocations:
         - velero-hetzner-aws
