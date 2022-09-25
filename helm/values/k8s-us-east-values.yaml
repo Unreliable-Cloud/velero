@@ -72,3 +72,19 @@ velero:
         storageLocation: velero-hetzner-aws
         volumeSnapshotLocations:
         - velero-hetzner-aws
+    prometheus:
+      enabled: true
+      labels:
+        app: prometheus
+      schedule: "@every 168h"
+      template:
+        ttl: "360h0m0s"
+        includedNamespaces:
+        - prometheus
+        includedResources:
+        - "*"
+        includeClusterResources: true
+        snapshotVolumes: false
+        storageLocation: velero-hetzner-aws
+        volumeSnapshotLocations:
+        - velero-hetzner-aws
