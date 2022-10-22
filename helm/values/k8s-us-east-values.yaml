@@ -14,7 +14,7 @@ velero:
 
   initContainers:
   - name: velero-plugin-for-aws
-    image: velero/velero-plugin-for-aws:v1.5.0
+    image: velero/velero-plugin-for-aws:v1.5.1
     imagePullPolicy: IfNotPresent
     volumeMounts:
       - mountPath: /target
@@ -24,7 +24,7 @@ velero:
     provider: aws
     backupStorageLocation:
       name: velero-hetzner-aws
-      bucket: velero-backups-hetzner-k8s-81aedd1
+      bucket: velero-backups-hetzner-k8s
       default: true
     volumeSnapshotLocation:
       name: velero-hetzner-aws
