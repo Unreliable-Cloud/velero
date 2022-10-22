@@ -24,7 +24,7 @@ velero:
     provider: aws
     backupStorageLocation:
       name: velero-hetzner-aws
-      bucket: velero-backups-hetzner-k8s-81aedd1
+      bucket: velero-backups-hetzner-k8s
       default: true
     volumeSnapshotLocation:
       name: velero-hetzner-aws
