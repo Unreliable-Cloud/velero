@@ -1,0 +1,74 @@
+velero:
+  image:
+    repository: docker.io/velero/velero
+  labels:
+    app: velero
+  podLabels:
+    app: velero
+  podAnnotations:
+    ad.datadoghq.com/velero.logs: '[{"service": "velero", "source": "kubernetes"}]'
+    ad.datadoghq.com/restic.logs: '[{"service": "restic", "source": "go", "sourcecategory": "kubernetes"}]'
+  resouces:
+    requests:
+      cpu: 200m
+
+  initContainers:
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.5.1
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
+
+  configuration:
+    provider: aws
+    backupStorageLocation:
+      name: velero-hetzner-aws
+      bucket: velero-backups-hetzner-k8s
+      default: true
+    volumeSnapshotLocation:
+      name: velero-hetzner-aws
+      defaultVolumesToRestic: true
+      config:
+        region: us-east-1
+    logFormat: json
+
+  credentials:
+    existingSecret: velero-hetzner-aws-s3
+
+  deployRestic: true
+
+  restic:
+    privileged: true
+    tolerations:
+    - key: node-role.kubernetes.io/control-plane
+      effect: NoSchedule
+    - key: node-role.kubernetes.io/master
+      effect: NoSchedule
+    resources:
+      requests:
+        cpu: 200m
+        memory: 256Mi
+
+  schedules:
+    etcd:
+      enabled: true
+      labels:
+        component: etcd
+        tier: control-plane
+      schedule: "@every 48h"
+      template:
+        ttl: "360h0m0s"
+        includedNamespaces:
+        - kube-system
+        includedResources:
+        - "*"
+        includeClusterResources: true
+        labelSelector:
+          matchLabels:
+            component: etcd
+            tier: control-plane
+        snapshotVolumes: false
+        storageLocation: velero-hetzner-aws
+        volumeSnapshotLocations:
+        - velero-hetzner-aws
