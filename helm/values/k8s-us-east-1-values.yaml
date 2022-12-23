@@ -56,7 +56,7 @@ velero:
       labels:
         component: etcd
         tier: control-plane
-      schedule: "@every 1w"
+      schedule: "@every 168h"
       template:
         ttl: "360h0m0s"
         includedNamespaces:
